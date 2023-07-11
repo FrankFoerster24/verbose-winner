@@ -1,0 +1,33 @@
+---
+name: Foo
+on: # yamllint disable-line rule:truthy
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Target Environment"
+        required: true
+        type: choice
+        default: dev
+        options:
+          - dev
+      filters:
+        description: "Space separated list of namespaces with the DBs to drop."
+        require: true
+        type: string
+        default: "test"
+      confirmation:
+        description: "I asked the team to confirm that I can proceed."
+        require: true
+        type: boolean
+        default: false
+
+jobs:
+  job1:
+    if: >-
+      inputs.confirmation == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Echo
+        run: echo "Hello World!"
