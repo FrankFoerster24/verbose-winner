@@ -23,11 +23,11 @@ on: # yamllint disable-line rule:truthy
 
 jobs:
   job1:
-    if: >-
-      inputs.confirmation == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
       - name: Echo
         run: echo "Hello World!"
+      - name: Debug
+        run: echo "${{ inputs.confirmation }}"
