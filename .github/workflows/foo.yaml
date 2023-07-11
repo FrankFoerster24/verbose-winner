@@ -24,7 +24,7 @@ on: # yamllint disable-line rule:truthy
 jobs:
   job1:
     if: >-
-      inputs.confirmation == 'true'
+      github.events.inputs.confirmation == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
